@@ -1,13 +1,16 @@
 {
-    "name": "naqi-static-site",
+    "name": "naqi-site",
     "private": true,
     "version": "1.0.0",
     "type": "module",
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-        "preview": "vite preview"
+        "preview": "vite preview",
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d dist"
     },
+    "homepage": "https://salih004.github.io/naqi-site",
     "dependencies": {
         "framer-motion": "^11.0.0",
         "lucide-react": "^0.562.0",
