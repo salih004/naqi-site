@@ -1,8 +1,9 @@
 {
-    "name": "naqi-static-site",
-    "private": true,
+    "name": "naqi-site",
     "version": "1.0.0",
+    "private": true,
     "type": "module",
+    "homepage": "https://salih004.github.io/naqi-site",
     "scripts": {
         "dev": "vite",
         "build": "vite build",
@@ -10,20 +11,19 @@
         "predeploy": "npm run build",
         "deploy": "gh-pages -d dist"
     },
-    "homepage": "https://salih004.github.io/naqi-static-site",
     "dependencies": {
-        "framer-motion": "^11.0.0",
-        "lucide-react": "^0.562.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
+        "framer-motion": "^11.0.0",
+        "lucide-react": "^0.562.0",
         "react-icons": "^5.5.0"
     },
     "devDependencies": {
+        "vite": "^5.0.0",
         "@vitejs/plugin-react": "^5.1.2",
-        "autoprefixer": "^10.4.16",
-        "gh-pages": "^6.3.0",
-        "postcss": "^8.4.32",
         "tailwindcss": "^3.4.0",
-        "vite": "^5.0.0"
+        "postcss": "^8.4.32",
+        "autoprefixer": "^10.4.16",
+        "gh-pages": "^6.3.0"
     }
 }
