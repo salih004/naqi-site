@@ -36,6 +36,34 @@ export default function Curriculum() {
     },
   };
 
+  // Bullet point animation
+  const bulletVariants = {
+    hidden: { opacity: 0, y: 10 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  };
+
+  // Curriculum bullet points with bold & gold parts
+  const trackBullets = {
+    Reading: [
+      "Develop Qur’an reading fluency without memorization or advanced Tajweed study",
+      "Focus on Arabic letter recognition and proper pronunciation",
+      "Improve reading accuracy and fluency",
+      <span key="reading-addon" className="font-semibold text-gold">Optional add-on: Tajweed Track</span>,
+    ],
+    Memorization: [
+      "Memorize portions of the Qur’an according to student’s pace",
+      "Includes guided memorization plans and revision",
+      "Maintain accuracy during recitation",
+      <span key="memorization-addon" className="font-semibold text-gold">Optional add-on: Tajweed Track</span>,
+    ],
+    Tajweed: [
+      "Study Qur’anic recitation rules (ʿIlm al-Tajwīd) and apply them correctly",
+      "Covers articulation points (Makharij) and letter characteristics (Sifat)",
+      "Learn foundational Tajweed rules",
+      <span key="tajweed-pathway" className="font-semibold text-gold">Choose a practical pathway: Tajweed with Reading or Tajweed with Memorization</span>,
+    ],
+  };
+
   return (
     <section id="curriculum" className="py-24 px-6 max-w-6xl mx-auto min-h-screen scroll-mt-24">
       {/* Heading */}
@@ -57,7 +85,7 @@ export default function Curriculum() {
         transition={{ duration: 1 }}
       >
         <img
-          src="/images/tracks.png"
+          src="public/images/tracks.png"
           alt="Curriculum Tracks"
           className="w-full rounded-xl shadow-lg"
         />
@@ -71,7 +99,7 @@ export default function Curriculum() {
         whileInView="visible"
         viewport={{ once: false, margin: "-50px" }}
       >
-        {tracks.map((track, i) => {
+        {tracks.map((track) => {
           const Icon = icons[track];
           return (
             <motion.div
@@ -88,9 +116,22 @@ export default function Curriculum() {
               </motion.div>
 
               <h3 className="text-xl text-emerald font-semibold text-center">{track}</h3>
-              <p className="mt-4 text-sm text-center">
-                Structured academic instruction designed for clarity and mastery.
-              </p>
+
+              {/* Bullet points */}
+              <ul className="mt-4 text-sm text-emerald/80 leading-relaxed list-disc list-outside pl-5 space-y-2">
+                {trackBullets[track].map((bullet, index) => (
+                  <motion.li
+                    key={index}
+                    variants={bulletVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ delay: index * 0.15 }}
+                  >
+                    {bullet}
+                  </motion.li>
+                ))}
+              </ul>
             </motion.div>
           );
         })}

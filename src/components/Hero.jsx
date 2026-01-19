@@ -9,7 +9,7 @@ export default function Hero() {
       {/* Animated Background Image */}
       <motion.div
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url(/images/Backround.png)" }}
+        style={{ backgroundImage: "url(public/images/background.png)" }}
         initial={{ scale: 1.08 }}
         animate={{ scale: [1.08, 1, 1.08], y: [0, -14, 0] }}
         transition={{
@@ -40,15 +40,22 @@ export default function Hero() {
           Noor Al-Qur’an Institute
         </motion.h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.8 }}
-          className="mt-6 text-base md:text-lg text-cream/90 leading-relaxed"
+        <motion.h2
+          initial={{ opacity: 0, clipPath: "inset(0 0 100% 0)" }}
+          animate={{ opacity: 1, clipPath: "inset(0 0 0% 0)" }}
+          transition={{ delay: 0.3, duration: 1.2, ease: "easeOut" }}
+          className="
+    mt-8
+    text-2xl md:text-4xl
+    font-medium
+    tracking-wide
+    text-cream
+    font-serif
+  "
         >
-          Teaching the Qur’an with clarity, discipline, and academic excellence —
-          designed for focused learners in a modern world.
-        </motion.p>
+          Teaching the Qur’an with Mastery
+        </motion.h2>
+
 
         {/* CTA */}
         <motion.a

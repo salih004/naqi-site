@@ -12,6 +12,7 @@
     },
     "homepage": "https://salih004.github.io/naqi-site",
     "dependencies": {
+        "@emailjs/browser": "^4.4.1",
         "framer-motion": "^11.0.0",
         "lucide-react": "^0.562.0",
         "react": "^18.2.0",
