@@ -10,7 +10,7 @@ export default function Navbar() {
     >
       {/* Logo */}
       <motion.a
-        href="hero"
+        href="#hero"
         className="flex items-center"
         whileHover={{ scale: 1.03 }}
         transition={{ duration: 0.2 }}

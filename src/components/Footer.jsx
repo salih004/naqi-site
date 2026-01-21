@@ -44,7 +44,7 @@ export default function Footer() {
         {/* Logo */}
         <div className="mb-6 flex justify-center">
           <motion.a
-            href="/"
+            href="#hero"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             whileHover={{
