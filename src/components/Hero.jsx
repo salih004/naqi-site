@@ -9,7 +9,7 @@ export default function Hero() {
       {/* Animated Background Image */}
       <motion.div
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url(public/images/background.png)" }}
+        style={{ backgroundImage: "/naqi-site/images/background.png" }}
         initial={{ scale: 1.08 }}
         animate={{ scale: [1.08, 1, 1.08], y: [0, -14, 0] }}
         transition={{

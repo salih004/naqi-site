@@ -55,7 +55,7 @@ export default function Footer() {
             className="inline-block"
           >
             <img
-              src="public/images/dark_favicon.png"
+              src="/naqi-site/images/dark_favicon.png"
               alt="NAQI Logo"
               className="h-16 w-auto"
             />
