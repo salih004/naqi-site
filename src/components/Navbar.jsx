@@ -16,7 +16,7 @@ export default function Navbar() {
         transition={{ duration: 0.2 }}
       >
         <img
-          src="/naqi-site/images/dark_favicon.png"
+          src="/naqi-site/images/test1.png"
           alt="Noor Al-Qur’an Institute"
           className="h-9 w-auto"
         />
