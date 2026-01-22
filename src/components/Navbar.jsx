@@ -18,7 +18,7 @@ export default function Navbar() {
         <img
           src="/naqi-site/images/test1.png"
           alt="Noor Al-Qur’an Institute"
-          className="h-9 w-auto"
+          className="h-12 md:h-16 w-auto" // responsive: h-12 mobile, h-16 desktop
         />
       </motion.a>
 
