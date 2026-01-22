@@ -1,114 +1,79 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { motion } from "framer-motion";
 
-export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const menuItems = ["Curriculum", "Enrollment", "About"];
-
+export default function Hero() {
   return (
-    <motion.nav
-      className="sticky top-0 bg-emerald text-cream px-4 md:px-8 py-4 z-50"
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
+    <section
+      id="hero"
+      className="min-h-screen flex flex-col justify-center items-center text-center px-6 relative overflow-hidden"
     >
-      <div className="flex justify-between items-center">
-        {/* Logo */}
+      {/* Animated Background Image */}
+      <motion.div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url('/naqi-site/images/background.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center center"
+        }}
+        initial={{ scale: 1.08 }}
+        animate={{ scale: [1.08, 1, 1.08], y: [0, -14, 0] }}
+        transition={{
+          duration: 22,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      {/* Soft Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-emerald/70 via-emerald/60 to-emerald/80" />
+
+      {/* Floating Light Accent */}
+      <motion.div
+        className="absolute top-1/4 left-1/2 w-[500px] h-[500px] rounded-full bg-gold/10 blur-3xl"
+        animate={{ y: [0, -30, 0], opacity: [0.4, 0.6, 0.4] }}
+        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      {/* Content */}
+      <div className="relative z-10 max-w-3xl">
+        <motion.h1
+          initial={{ opacity: 0, y: 48 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: "easeOut" }}
+          className="text-3xl sm:text-4xl md:text-6xl text-gold font-bold tracking-tight px-4"
+        >
+          Noor Al-Qur'an Institute
+        </motion.h1>
+
+        <motion.h2
+          initial={{ opacity: 0, clipPath: "inset(0 0 100% 0)" }}
+          animate={{ opacity: 1, clipPath: "inset(0 0 0% 0)" }}
+          transition={{ delay: 0.3, duration: 1.2, ease: "easeOut" }}
+          className="
+            mt-6 md:mt-8
+            text-xl sm:text-2xl md:text-4xl
+            font-medium
+            tracking-wide
+            text-cream
+            font-serif
+            px-4
+          "
+        >
+          Teaching the Qur'an with Mastery
+        </motion.h2>
+
+        {/* CTA */}
         <motion.a
-          href="#hero"
-          className="flex items-center flex-shrink-0"
-          whileHover={{ scale: 1.03 }}
-          transition={{ duration: 0.2 }}
-          onClick={() => setIsOpen(false)}
+          href="#about"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.6 }}
+          whileHover={{ scale: 1.06 }}
+          whileTap={{ scale: 0.97 }}
+          className="mt-8 md:mt-10 inline-block rounded-md bg-gold px-8 md:px-10 py-3 md:py-4 text-sm md:text-base text-emerald font-semibold shadow-lg hover:shadow-xl transition-shadow"
         >
-          <img
-            src="/naqi-site/images/test1.png"
-            alt="Noor Al-Qur'an Institute"
-            className="h-8 md:h-9 w-auto"
-          />
+          Begin Your Journey
         </motion.a>
-
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-8 text-sm font-medium">
-          {menuItems.map((item) => (
-            <motion.a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className="relative"
-              whileHover="hover"
-              initial="rest"
-              animate="rest"
-            >
-              <span>{item}</span>
-              <motion.span
-                variants={{
-                  rest: { scaleX: 0 },
-                  hover: { scaleX: 1 },
-                }}
-                transition={{ duration: 0.25, ease: "easeOut" }}
-                className="absolute left-0 -bottom-1 h-[1.5px] w-full bg-gold origin-left"
-              />
-            </motion.a>
-          ))}
-
-          {/* Apply CTA */}
-          <motion.a
-            href="#apply"
-            className="px-4 py-2 rounded-md border border-gold text-gold"
-            whileHover={{
-              backgroundColor: "#C9A24D",
-              color: "#2F4F3E",
-            }}
-            transition={{ duration: 0.25 }}
-          >
-            Apply
-          </motion.a>
-        </div>
-
-        {/* Mobile Menu Button */}
-        <motion.button
-          className="md:hidden text-cream"
-          onClick={() => setIsOpen(!isOpen)}
-          whileTap={{ scale: 0.95 }}
-        >
-          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </motion.button>
       </div>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden overflow-hidden"
-          >
-            <div className="flex flex-col space-y-4 pt-4 pb-2">
-              {menuItems.map((item) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  className="text-sm font-medium hover:text-gold transition-colors"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {item}
-                </a>
-              ))}
-              <a
-                href="#apply"
-                className="text-sm font-medium px-4 py-2 rounded-md border border-gold text-gold hover:bg-gold hover:text-emerald transition-colors text-center"
-                onClick={() => setIsOpen(false)}
-              >
-                Apply
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.nav>
+    </section>
   );
 }
