@@ -72,7 +72,7 @@ export default function AboutNAQI() {
                         About Noor Al-Qur’an Institute
                     </h2>
                     <p className="max-w-2xl mx-auto text-sm md:text-base text-emerald/80">
-                        Founded with the intention of teaching the Qur’an with mastery—combining sincerity, discipline, and flexibility for modern lives.
+                        Established in August 2025, Noor Al-Qur’an Institute (NAQI) operates as an online Qur’an education institute focused on structured learning.
                     </p>
                 </motion.div>
 
