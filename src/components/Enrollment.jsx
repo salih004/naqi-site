@@ -5,7 +5,7 @@ const enrollmentSteps = [
   {
     step: 1,
     title: "Register Online",
-    description: "Students submit their registration through NAQI’s website via Google Forms.",
+    description: "Students submit their registration through NAQI's website via Google Forms.",
     bgColor: "#C9A24D",
     iconColor: "#2B2B2B",
     icon: FileText,
@@ -48,7 +48,7 @@ const enrollmentSteps = [
     step: 6,
     title: "Begin Learning Journey",
     description:
-      "After final acceptance, students start their Qur’an learning journey with NAQI.",
+      "After final acceptance, students start their Qur'an learning journey with NAQI.",
     bgColor: "#2F4F3E",
     iconColor: "#F7F2EA",
     icon: Award,
@@ -68,11 +68,11 @@ export default function Enrollment() {
   return (
     <section
       id="enrollment"
-      className="py-24 px-6 scroll-mt-24"
-      style={{ backgroundColor: "#6F7F63" }} // Muted Olive
+      className="py-16 md:py-24 px-4 md:px-6 scroll-mt-24"
+      style={{ backgroundColor: "#6F7F63" }}
     >
       <motion.h2
-        className="text-3xl md:text-4xl text-2F4F3E font-bold mb-16 text-center"
+        className="text-2xl sm:text-3xl md:text-4xl text-cream font-bold mb-12 md:mb-16 text-center px-4"
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -80,7 +80,8 @@ export default function Enrollment() {
         Enrollment Process
       </motion.h2>
 
-      <div className="relative max-w-4xl mx-auto">
+      {/* Desktop Timeline */}
+      <div className="hidden md:block relative max-w-4xl mx-auto">
         <div
           className="absolute left-1/2 -translate-x-1/2 h-full w-px"
           style={{ backgroundColor: "#C9A24D" }}
@@ -110,10 +111,10 @@ export default function Enrollment() {
                           backgroundColor: "#F7F2EA",
                         }}
                       >
-                        <h4 className="text-sm font-semibold text-2F4F3E mb-2">
+                        <h4 className="text-sm font-semibold mb-2" style={{ color: "#2F4F3E" }}>
                           {item.title}
                         </h4>
-                        <p className="text-sm text-2B2B2B leading-relaxed">
+                        <p className="text-sm leading-relaxed" style={{ color: "#2B2B2B" }}>
                           {item.description}
                         </p>
                       </div>
@@ -148,10 +149,10 @@ export default function Enrollment() {
                           backgroundColor: "#F7F2EA",
                         }}
                       >
-                        <h4 className="text-sm font-semibold text-2F4F3E mb-2">
+                        <h4 className="text-sm font-semibold mb-2" style={{ color: "#2F4F3E" }}>
                           {item.title}
                         </h4>
-                        <p className="text-sm text-2B2B2B leading-relaxed">
+                        <p className="text-sm leading-relaxed" style={{ color: "#2B2B2B" }}>
                           {item.description}
                         </p>
                       </div>
@@ -164,14 +165,80 @@ export default function Enrollment() {
         </div>
       </div>
 
+      {/* Mobile Timeline */}
+      <div className="md:hidden relative max-w-lg mx-auto">
+        <div
+          className="absolute left-8 top-0 bottom-0 w-0.5"
+          style={{ backgroundColor: "#C9A24D" }}
+        />
+
+        <div className="flex flex-col space-y-8">
+          {enrollmentSteps.map((item, index) => {
+            const Icon = item.icon;
+
+            return (
+              <motion.div
+                key={item.step}
+                variants={timelineVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="relative flex items-start gap-6"
+              >
+                {/* Icon */}
+                <motion.div
+                  className="flex-shrink-0 p-3 rounded-full shadow-lg z-10"
+                  style={{
+                    backgroundColor: item.bgColor,
+                    color: item.iconColor,
+                    border: "2px solid #C9A24D",
+                  }}
+                  animate={{ y: [0, -4, 0] }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: 1.2,
+                    ease: "easeInOut",
+                    delay: index * 0.2,
+                  }}
+                >
+                  <Icon className="w-5 h-5" />
+                </motion.div>
+
+                {/* Content Card */}
+                <div
+                  className="flex-1 p-5 rounded-xl shadow-md border"
+                  style={{
+                    borderColor: "#C9A24D",
+                    backgroundColor: "#F7F2EA",
+                  }}
+                >
+                  <h4
+                    className="text-base font-semibold mb-3"
+                    style={{ color: "#2F4F3E" }}
+                  >
+                    {item.title}
+                  </h4>
+                  <p
+                    className="text-sm leading-relaxed"
+                    style={{ color: "#2B2B2B" }}
+                  >
+                    {item.description}
+                  </p>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+
       <motion.p
-        className="mt-20 text-center text-sm text-2B2B2B max-w-2xl mx-auto"
+        className="mt-16 md:mt-20 text-center text-sm md:text-base text-cream max-w-2xl mx-auto px-4 leading-relaxed"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ delay: 0.8, duration: 0.8 }}
       >
-        NAQI’s enrollment process is designed to be clear, transparent, and supportive, ensuring every student enters their learning journey confidently.
+        NAQI's enrollment process is designed to be clear, transparent, and supportive, ensuring every student enters their learning journey confidently.
       </motion.p>
     </section>
   );
