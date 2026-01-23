@@ -8,7 +8,7 @@
         "build": "vite build",
         "preview": "vite preview"
     },
-    "homepage": "https://salih004.github.io/naqi-site",
+    "homepage": "https://nooralquran.institute",
     "dependencies": {
         "@emailjs/browser": "^4.4.1",
         "framer-motion": "^11.0.0",
