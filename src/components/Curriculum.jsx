@@ -85,7 +85,7 @@ export default function Curriculum() {
         transition={{ duration: 1 }}
       >
         <img
-          src="/naqi-site/images/tracks.png"
+          src="public/images/tracks.png"
           alt="Curriculum Tracks"
           className="w-full rounded-xl shadow-lg"
         />

@@ -10,7 +10,7 @@ export default function Hero() {
       <motion.div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: "url('/naqi-site/images/background.png')",
+          backgroundImage: "url('public/images/background.png')",
           backgroundSize: "cover",
           backgroundPosition: "center center"
         }}

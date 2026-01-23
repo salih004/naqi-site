@@ -24,7 +24,7 @@ export default function Navbar() {
           onClick={() => setIsOpen(false)}
         >
           <img
-            src="/naqi-site/images/test1.png"
+            src="public/images/test1.png"
             alt="Noor Al-Qur'an Institute"
             className="h-8 md:h-9 w-auto"
           />
