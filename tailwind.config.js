@@ -6,9 +6,9 @@ export default {
         emerald: "#2F4F3E",
         gold: "#C9A24D",
         cream: "#F7F2EA",
-        charcoal: "#2B2B2B"
-      }
-    }
+        charcoal: "#2B2B2B",
+      },
+    },
   },
-  plugins: []
+  plugins: [],
 };

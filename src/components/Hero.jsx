@@ -9,67 +9,79 @@ export default function Hero() {
       {/* Animated Background Image */}
       <motion.div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: "url('/images/background.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center center"
-        }}
+        style={{ backgroundImage: "url('/images/background.png')" }}
         initial={{ scale: 1.08 }}
         animate={{ scale: [1.08, 1, 1.08], y: [0, -14, 0] }}
-        transition={{
-          duration: 22,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+        transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* Soft Gradient Overlay */}
+      {/* Soft Emerald Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-emerald/70 via-emerald/60 to-emerald/80" />
 
-      {/* Floating Light Accent */}
+      {/* Gold Ambient Light */}
       <motion.div
-        className="absolute top-1/4 left-1/2 w-[500px] h-[500px] rounded-full bg-gold/10 blur-3xl"
+        className="absolute top-1/4 left-1/2 w-[500px] h-[500px] rounded-full bg-gold/15 blur-3xl"
         animate={{ y: [0, -30, 0], opacity: [0.4, 0.6, 0.4] }}
         transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
       />
 
       {/* Content */}
       <div className="relative z-10 max-w-3xl">
+        {/* H1 */}
         <motion.h1
           initial={{ opacity: 0, y: 48 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: "easeOut" }}
           className="text-3xl sm:text-4xl md:text-6xl text-gold font-bold tracking-tight px-4"
         >
-          Noor Al-Qur'an Institute
+          Noor Al-Qur&apos;an Institute
         </motion.h1>
 
+        {/* H2 */}
         <motion.h2
           initial={{ opacity: 0, clipPath: "inset(0 0 100% 0)" }}
           animate={{ opacity: 1, clipPath: "inset(0 0 0% 0)" }}
           transition={{ delay: 0.3, duration: 1.2, ease: "easeOut" }}
+          className="mt-5 md:mt-7 text-xl sm:text-2xl md:text-4xl font-medium tracking-wide text-cream font-serif px-4"
+        >
+          Teaching the Qur&apos;an with Mastery
+        </motion.h2>
+
+        {/* Context / SEO Block */}
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.7, ease: "easeOut" }}
           className="
-            mt-6 md:mt-8
-            text-xl sm:text-2xl md:text-4xl
-            font-medium
-            tracking-wide
-            text-cream
-            font-serif
-            px-4
+            mt-5 sm:mt-6 md:mt-8
+            px-5 sm:px-6
+            py-4 sm:py-5
+            rounded-lg
+            bg-emerald/40
+            backdrop-blur-sm
           "
         >
-          Teaching the Qur'an with Mastery
-        </motion.h2>
+          <h3 className="text-base sm:text-lg font-semibold text-gold mb-2">
+            Online Qur’an Classes for Adults & College Students
+          </h3>
+
+          <p className="text-sm sm:text-base leading-snug sm:leading-relaxed text-cream/90">
+            Noor Al-Qur’an Institute (NAQI) offers structured online Qur’an classes
+            focused on proper recitation, Tajwīd, and memorization. Our approach
+            emphasizes qualified instruction, intentional learning, and
+            cultivating a strong, lifelong relationship with the Qur’an.
+          </p>
+        </motion.div>
 
         {/* CTA */}
         <motion.a
           href="#about"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.6 }}
+          transition={{ delay: 0.9, duration: 0.6 }}
           whileHover={{ scale: 1.06 }}
           whileTap={{ scale: 0.97 }}
-          className="mt-8 md:mt-10 inline-block rounded-md bg-gold px-8 md:px-10 py-3 md:py-4 text-sm md:text-base text-emerald font-semibold shadow-lg hover:shadow-xl transition-shadow"
+          className="mt-7 md:mt-9 inline-block rounded-md bg-gold px-8 md:px-10 py-3 md:py-4 text-sm md:text-base text-emerald font-semibold shadow-lg hover:shadow-xl transition-shadow"
         >
           Begin Your Journey
         </motion.a>
