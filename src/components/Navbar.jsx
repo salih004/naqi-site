@@ -24,11 +24,10 @@ export default function Navbar() {
           onClick={() => setIsOpen(false)}
         >
           <img
-  src="/images/test1.png"
-  alt="Noor Al-Qur'an Institute"
-  className="h-14 md:h-16 w-auto -mt-1 md:-mt-2 object-contain"
-/>
-
+            src="/images/test1.png"
+            alt="Noor Al-Qur'an Institute"
+            className="h-8 md:h-9 w-auto"
+          />
         </motion.a>
 
         {/* Desktop Navigation */}
