@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Instagram, Linkedin, Youtube } from "lucide-react";
+import {  Facebook, Youtube } from "lucide-react";
 import emailjs from "@emailjs/browser";
 
 export default function Footer() {
@@ -85,13 +85,11 @@ export default function Footer() {
 
         {/* Social Links */}
         <div className="flex justify-center gap-6 mb-6">
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">
-            <Instagram className="w-6 h-6" />
+          
+          <a href="https://www.facebook.com/p/Noor-Al-Quran-61587247102906/" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">
+            <Facebook className="w-6 h-6" />
           </a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">
-            <Linkedin className="w-6 h-6" />
-          </a>
-          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">
+          <a href="https://www.youtube.com/@NoorAl-QuranInstitute" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">
             <Youtube className="w-6 h-6" />
           </a>
         </div>
