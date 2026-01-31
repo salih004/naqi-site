@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import {  Facebook, Youtube } from "lucide-react";
+import { Facebook, Youtube } from "lucide-react";
 import emailjs from "@emailjs/browser";
 
 export default function Footer() {
@@ -37,6 +37,15 @@ export default function Footer() {
       );
   };
 
+  // Helper for smooth scrolling
+  const scrollToSection = (id) => {
+    const section = document.querySelector(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+    setIsOpen(false);
+  };
+
   return (
     <footer className="bg-[#2B2B2B] text-cream py-12 px-6 relative">
       <div className="max-w-3xl mx-auto text-center">
@@ -45,19 +54,26 @@ export default function Footer() {
         <div className="mb-6 flex justify-center">
           <motion.a
             href="#hero"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            whileHover={{
-              scale: 1.05,
-              boxShadow: "0 0 35px rgba(212,175,55,0.45)",
+            className="flex items-center flex-shrink-0"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection("#hero");
             }}
-            transition={{ type: "spring", stiffness: 200, damping: 18 }}
-            className="inline-block"
           >
-            <img
-              src="/images/test1.png"
-              alt="NAQI Logo"
-              className="h-16 w-auto"
+            <motion.img
+              src="/images/t-1.png"
+              alt="Noor Al-Qur'an Institute"
+              className="h-14 md:h-16 w-auto -mt-1 md:-mt-2 object-contain"
+              whileHover={{
+                scale: 1.08,
+                y: -2,
+                filter: "drop-shadow(0px 0px 12px rgba(201,162,77,0.65)) brightness(1.05)",
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 260,
+                damping: 18,
+              }}
             />
           </motion.a>
         </div>
@@ -78,18 +94,62 @@ export default function Footer() {
 
         {/* Quick Navigation Links */}
         <div className="flex justify-center gap-6 mb-6 text-sm">
-          <a href="#curriculum" className="hover:text-gold transition-colors">Curriculum</a>
-          <a href="#about" className="hover:text-gold transition-colors">About</a>
-          <a href="#apply" className="hover:text-gold transition-colors">Apply</a>
+          <motion.a
+            href="#curriculum"
+            className="hover:text-gold transition-colors"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.97 }}
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection("#curriculum");
+            }}
+          >
+            Curriculum
+          </motion.a>
+
+          <motion.a
+            href="#about"
+            className="hover:text-gold transition-colors"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.97 }}
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection("#about");
+            }}
+          >
+            About
+          </motion.a>
+
+          <motion.a
+            href="#apply"
+            className="hover:text-gold transition-colors"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.97 }}
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection("#apply");
+            }}
+          >
+            Apply
+          </motion.a>
         </div>
 
         {/* Social Links */}
         <div className="flex justify-center gap-6 mb-6">
-          
-          <a href="https://www.facebook.com/p/Noor-Al-Quran-61587247102906/" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">
+          <a
+            href="https://www.facebook.com/p/Noor-Al-Quran-61587247102906/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-gold transition-colors"
+          >
             <Facebook className="w-6 h-6" />
           </a>
-          <a href="https://www.youtube.com/@NoorAl-QuranInstitute" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">
+          <a
+            href="https://www.youtube.com/@NoorAl-QuranInstitute"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-gold transition-colors"
+          >
             <Youtube className="w-6 h-6" />
           </a>
         </div>

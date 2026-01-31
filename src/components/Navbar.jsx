@@ -7,9 +7,19 @@ export default function Navbar() {
 
   const menuItems = ["Curriculum", "Enrollment", "About"];
 
+  // Smooth scroll helper
+  const scrollToSection = (id) => {
+    const section = document.querySelector(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+    setIsOpen(false); // close mobile menu if open
+  };
+
   return (
     <motion.nav
-      className="sticky top-0 bg-emerald text-cream px-4 md:px-8 py-4 z-50"
+      className="sticky top-0 bg-emerald text-cream px-4 md:px-8 py-4 z-50 bg-cover bg-center"
+      style={{ backgroundImage: "url('/images/navbar.png')" }}
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
@@ -19,14 +29,25 @@ export default function Navbar() {
         <motion.a
           href="#hero"
           className="flex items-center flex-shrink-0"
-          whileHover={{ scale: 1.03 }}
-          transition={{ duration: 0.2 }}
-          onClick={() => setIsOpen(false)}
+          onClick={(e) => {
+            e.preventDefault();
+            scrollToSection("#hero");
+          }}
         >
-          <img
-            src="/images/test1.png"
+          <motion.img
+            src="/images/t-1.png"
             alt="Noor Al-Qur'an Institute"
             className="h-14 md:h-16 w-auto -mt-1 md:-mt-2 object-contain"
+            whileHover={{
+              scale: 1.08,
+              y: -2,
+              filter: "drop-shadow(0px 0px 12px rgba(201,162,77,0.65)) brightness(1.05)",
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 260,
+              damping: 18,
+            }}
           />
         </motion.a>
 
@@ -40,6 +61,10 @@ export default function Navbar() {
               whileHover="hover"
               initial="rest"
               animate="rest"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection(`#${item.toLowerCase()}`);
+              }}
             >
               <span>{item}</span>
               <motion.span
@@ -56,12 +81,17 @@ export default function Navbar() {
           {/* Apply CTA */}
           <motion.a
             href="#apply"
-            className="px-4 py-2 rounded-md border border-gold text-gold"
-            whileHover={{
-              backgroundColor: "#C9A24D",
-              color: "#2F4F3E",
+            className="px-4 py-2 rounded-md border border-gold text-2F4F3E bg-gold font-semibold"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection("#apply");
             }}
-            transition={{ duration: 0.25 }}
+            whileHover={{
+              scale: 1.05,
+              y: -2,
+              boxShadow: "0px 8px 15px rgba(201,162,77,0.4)",
+            }}
+            transition={{ type: "spring", stiffness: 260, damping: 18 }}
           >
             Apply
           </motion.a>
@@ -93,18 +123,31 @@ export default function Navbar() {
                   key={item}
                   href={`#${item.toLowerCase()}`}
                   className="text-sm font-medium hover:text-gold transition-colors"
-                  onClick={() => setIsOpen(false)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection(`#${item.toLowerCase()}`);
+                  }}
                 >
                   {item}
                 </a>
               ))}
-              <a
+
+              <motion.a
                 href="#apply"
-                className="text-sm font-medium px-4 py-2 rounded-md border border-gold text-gold hover:bg-gold hover:text-emerald transition-colors text-center"
-                onClick={() => setIsOpen(false)}
+                className="text-sm font-medium px-4 py-2 rounded-md border border-gold text-2F4F3E bg-gold text-center"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection("#apply");
+                }}
+                whileHover={{
+                  scale: 1.05,
+                  y: -2,
+                  boxShadow: "0px 8px 15px rgba(201,162,77,0.4)",
+                }}
+                transition={{ type: "spring", stiffness: 260, damping: 18 }}
               >
                 Apply
-              </a>
+              </motion.a>
             </div>
           </motion.div>
         )}
