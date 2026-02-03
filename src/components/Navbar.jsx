@@ -7,13 +7,17 @@ export default function Navbar() {
 
   const menuItems = ["Curriculum", "Enrollment", "About"];
 
-  // Smooth scroll helper
+  // Smooth scroll helper with micro delay for animations
   const scrollToSection = (id) => {
     const section = document.querySelector(id);
-    if (section) {
+    if (!section) return;
+
+    // allow tap animation to complete
+    setTimeout(() => {
       section.scrollIntoView({ behavior: "smooth" });
-    }
-    setIsOpen(false); // close mobile menu if open
+    }, 120);
+
+    setIsOpen(false);
   };
 
   return (
@@ -41,12 +45,19 @@ export default function Navbar() {
             whileHover={{
               scale: 1.08,
               y: -2,
-              filter: "drop-shadow(0px 0px 12px rgba(201,162,77,0.65)) brightness(1.05)",
+              filter:
+                "drop-shadow(0px 0px 12px rgba(201,162,77,0.65)) brightness(1.05)",
+            }}
+            whileTap={{
+              scale: 0.94,
+              y: 0,
+              filter:
+                "drop-shadow(0px 0px 6px rgba(201,162,77,0.4)) brightness(0.98)",
             }}
             transition={{
               type: "spring",
-              stiffness: 260,
-              damping: 18,
+              stiffness: 280,
+              damping: 20,
             }}
           />
         </motion.a>
@@ -91,6 +102,7 @@ export default function Navbar() {
               y: -2,
               boxShadow: "0px 8px 15px rgba(201,162,77,0.4)",
             }}
+            whileTap={{ scale: 0.96 }}
             transition={{ type: "spring", stiffness: 260, damping: 18 }}
           >
             Apply
@@ -101,7 +113,7 @@ export default function Navbar() {
         <motion.button
           className="md:hidden text-cream"
           onClick={() => setIsOpen(!isOpen)}
-          whileTap={{ scale: 0.95 }}
+          whileTap={{ scale: 0.9 }}
         >
           {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </motion.button>
@@ -114,7 +126,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
             className="md:hidden overflow-hidden"
           >
             <div className="flex flex-col space-y-4 pt-4 pb-2">
@@ -139,11 +151,7 @@ export default function Navbar() {
                   e.preventDefault();
                   scrollToSection("#apply");
                 }}
-                whileHover={{
-                  scale: 1.05,
-                  y: -2,
-                  boxShadow: "0px 8px 15px rgba(201,162,77,0.4)",
-                }}
+                whileTap={{ scale: 0.96 }}
                 transition={{ type: "spring", stiffness: 260, damping: 18 }}
               >
                 Apply

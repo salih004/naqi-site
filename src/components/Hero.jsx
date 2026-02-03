@@ -74,10 +74,7 @@ export default function Hero() {
           </h3>
 
           <p className="text-sm sm:text-base leading-snug sm:leading-relaxed text-cream/90">
-            Noor Al-Qur’an Institute (NAQI) offers structured online Qur’an classes
-            focused on proper recitation, Tajwīd, and memorization. Our approach
-            emphasizes qualified instruction, intentional learning, and
-            cultivating a strong, lifelong relationship with the Qur’an.
+            Noor Al-Qur’an Institute (NAQI) offers structured online Qur’an classes for adults and college students focused on accurate recitation, applied Tajwīd, and steady memorization. Classes are level-based and instructor-led, emphasizing consistency, clear feedback, and strong foundations to support meaningful, lasting growth with the Qur’an.
           </p>
         </motion.div>
 
