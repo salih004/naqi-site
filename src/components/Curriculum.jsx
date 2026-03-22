@@ -1,268 +1,342 @@
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { BookOpen, Layers, Sparkles, Quote } from "lucide-react";
 
+const tracks = [
+  {
+    numeral: "I",
+    id: "Reading",
+    icon: BookOpen,
+    title: "Reading Track",
+    subtitle: "Qur'an Fluency & Pronunciation",
+    points: [
+      "Develop Qur'an reading fluency from any starting level",
+      "Master Arabic letter recognition and proper pronunciation",
+      "Build reading accuracy through guided, structured practice",
+    ],
+    addon: "Optional add-on: Tajweed Track",
+  },
+  {
+    numeral: "II",
+    id: "Memorization",
+    icon: Layers,
+    title: "Memorization Track",
+    subtitle: "Hifz & Sustained Retention",
+    points: [
+      "Memorize Qur'an portions according to your individual pace",
+      "Structured memorization plans with consistent revision",
+      "Maintain recitation accuracy throughout the process",
+    ],
+    addon: "Optional add-on: Tajweed Track",
+  },
+  {
+    numeral: "III",
+    id: "Tajweed",
+    icon: Sparkles,
+    title: "Tajweed Track",
+    subtitle: "ʿIlm al-Tajwīd & Applied Rules",
+    points: [
+      "Study the rules of Qur'anic recitation (ʿIlm al-Tajwīd)",
+      "Master articulation points (Makharij) and letter characteristics (Sifat)",
+      "Apply Tajweed rules to reading or memorization contexts",
+    ],
+    addon: "Pair with: Reading or Memorization Track",
+  },
+];
+
 export default function Curriculum() {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [canHover, setCanHover] = useState(false);
-
-  // Detect hover capability (desktop vs mobile)
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setCanHover(window.matchMedia("(hover: hover)").matches);
-    }
-  }, []);
-
-  const icons = {
-    Reading: BookOpen,
-    Memorization: Layers,
-    Tajweed: Sparkles,
-  };
-
-  const tracks = ["Reading", "Memorization", "Tajweed"];
-
-  // Animation variants
-  const containerVariants = {
-    hidden: {},
-    visible: { transition: { staggerChildren: 0.15 } },
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 24 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
-  };
-
-  const iconVariants = {
-    animate: {
-      y: [0, -6, 0],
-      transition: {
-        duration: 1.2,
-        repeat: Infinity,
-        ease: "easeInOut",
-      },
-    },
-  };
-
-  const bulletVariants = {
-    hidden: { opacity: 0, y: 10 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.45, ease: "easeOut" },
-    },
-  };
-
-  const trackBullets = {
-    Reading: [
-      "Develop Qur'an reading fluency without memorization or advanced Tajweed study",
-      "Focus on Arabic letter recognition and proper pronunciation",
-      "Improve reading accuracy and fluency",
-      <span key="r" className="font-semibold text-gold">
-        Optional add-on: Tajweed Track
-      </span>,
-    ],
-    Memorization: [
-      "Memorize portions of the Qur'an according to student's pace",
-      "Includes guided memorization plans and revision",
-      "Maintain accuracy during recitation",
-      <span key="m" className="font-semibold text-gold">
-        Optional add-on: Tajweed Track
-      </span>,
-    ],
-    Tajweed: [
-      "Study Qur'anic recitation rules (ʿIlm al-Tajwīd) and apply them correctly",
-      "Covers articulation points (Makharij) and letter characteristics (Sifat)",
-      "Learn foundational Tajweed rules",
-      <span key="t" className="font-semibold text-gold">
-        Choose a practical pathway: Tajweed with Reading or Memorization
-      </span>,
-    ],
-  };
-
-  const studentTestimonial = {
-    name: "Hussein S",
-    track: "Reading & Tajweed Tracks",
-    testimonial:
-      "The combination of Reading and Tajweed tracks has transformed my Qur'an recitation. I went from struggling with basic pronunciation to confidently applying Tajweed rules in my daily reading.",
-    image: "/images/fc.png",
-  };
-
   return (
     <section
       id="curriculum"
-      className="py-24 px-6 max-w-6xl mx-auto min-h-screen scroll-mt-24"
+      className="scroll-mt-24"
+      style={{ backgroundColor: "#2F4F3E", padding: "6rem 1.5rem" }}
     >
-      {/* Heading */}
-      <motion.h2
-        className="text-3xl md:text-4xl text-emerald font-bold mb-12 text-center"
-        initial={{ opacity: 0, y: -16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        Curriculum Tracks
-      </motion.h2>
+      <div style={{ maxWidth: "72rem", margin: "0 auto" }}>
 
-      {/* Image */}
-      <motion.div
-        className="relative mx-auto max-w-4xl mb-12"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, margin: "-50px" }}
-        transition={{ duration: 1 }}
-      >
-        <img
-          src="/images/tracks.png"
-          alt="Curriculum Tracks"
-          className="w-full rounded-xl shadow-lg"
-        />
-      </motion.div>
+        {/* Section label */}
+        <motion.div
+          className="flex items-center gap-4 mb-8"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: false }}
+          transition={{ duration: 0.6 }}
+        >
+          <span
+            style={{
+              fontFamily: "Montserrat, sans-serif",
+              fontSize: "0.6rem",
+              letterSpacing: "0.25em",
+              textTransform: "uppercase",
+              color: "#E5C77A",
+              fontWeight: 600,
+              whiteSpace: "nowrap",
+            }}
+          >
+            02 / Curriculum
+          </span>
+          <div style={{ flex: 1, height: 1, backgroundColor: "rgba(201,162,77,0.3)" }} />
+        </motion.div>
 
-      {/* Track cards */}
-      <motion.div
-        className="grid md:grid-cols-3 gap-8"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: false, margin: "-50px" }}
-      >
-        {tracks.map((track, index) => {
-          const Icon = icons[track];
+        {/* Heading block */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-14 items-end">
+          <motion.h2
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.7 }}
+            style={{
+              fontFamily: "Playfair Display, serif",
+              fontSize: "clamp(2rem, 3.5vw, 2.8rem)",
+              fontWeight: 700,
+              color: "#F7F2EA",
+              lineHeight: 1.2,
+              margin: 0,
+            }}
+          >
+            Curriculum Tracks
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            style={{
+              fontFamily: "EB Garamond, serif",
+              fontSize: "1.1rem",
+              lineHeight: 1.9,
+              color: "rgba(247,242,234,0.75)",
+              margin: 0,
+            }}
+          >
+            Three structured pathways, each designed to meet you where you are
+            and guide you toward Qur'anic proficiency at your own pace.
+          </motion.p>
+        </div>
 
-          return (
-            <div key={track}>
+        {/* Track panels */}
+        <div
+          className="grid grid-cols-1 md:grid-cols-3"
+          style={{ border: "1px solid rgba(201,162,77,0.2)" }}
+        >
+          {tracks.map((track, i) => {
+            const Icon = track.icon;
+            return (
               <motion.div
-                variants={cardVariants}
-                whileHover={
-                  canHover
-                    ? {
-                        scale: 1.05,
-                        y: -5,
-                        boxShadow: "0 10px 25px rgba(0,0,0,0.08)",
-                      }
-                    : undefined
-                }
-                whileTap={{ scale: 0.97 }}
-                className="border border-gold p-6 bg-white rounded-lg shadow transition-shadow focus-within:ring-2 focus-within:ring-gold"
-                tabIndex={0}
+                key={track.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false }}
+                transition={{ duration: 0.6, delay: i * 0.12 }}
+                style={{
+                  backgroundColor: "rgba(15, 38, 27, 0.75)",
+                  padding: "2.5rem",
+                  borderRight:
+                    i < tracks.length - 1
+                      ? "1px solid rgba(201,162,77,0.15)"
+                      : "none",
+                }}
               >
-                <motion.div
-                  className="flex justify-center mb-3"
-                  variants={iconVariants}
-                  animate="animate"
+                {/* Numeral + icon row */}
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "flex-start",
+                    marginBottom: "1.5rem",
+                  }}
                 >
-                  <Icon className="w-7 h-7 text-gold" />
-                </motion.div>
+                  <span
+                    style={{
+                      fontFamily: "Playfair Display, serif",
+                      fontSize: "3.5rem",
+                      fontWeight: 700,
+                      color: "rgba(201,162,77,0.18)",
+                      lineHeight: 1,
+                      userSelect: "none",
+                    }}
+                  >
+                    {track.numeral}
+                  </span>
+                  <Icon
+                    style={{
+                      width: 20,
+                      height: 20,
+                      color: "#C9A24D",
+                      marginTop: "0.5rem",
+                      flexShrink: 0,
+                    }}
+                  />
+                </div>
 
-                <h3 className="text-xl text-emerald font-semibold text-center">
-                  {track}
+                {/* Gold accent line */}
+                <div
+                  style={{
+                    width: "2rem",
+                    height: 2,
+                    backgroundColor: "#C9A24D",
+                    marginBottom: "1rem",
+                  }}
+                />
+
+                <h3
+                  style={{
+                    fontFamily: "Playfair Display, serif",
+                    fontSize: "1.25rem",
+                    fontWeight: 700,
+                    color: "#F7F2EA",
+                    margin: "0 0 0.3rem",
+                  }}
+                >
+                  {track.title}
                 </h3>
 
-                <ul className="mt-4 text-sm text-emerald/80 leading-relaxed list-disc pl-5 space-y-2">
-                  {trackBullets[track].map((bullet, i) => (
-                    <motion.li
-                      key={i}
-                      variants={bulletVariants}
-                      initial="hidden"
-                      whileInView="visible"
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.12 }}
+                <p
+                  style={{
+                    fontFamily: "Montserrat, sans-serif",
+                    fontSize: "0.6rem",
+                    letterSpacing: "0.15em",
+                    textTransform: "uppercase",
+                    color: "#C9A24D",
+                    margin: "0 0 1.5rem",
+                  }}
+                >
+                  {track.subtitle}
+                </p>
+
+                <ul style={{ listStyle: "none", padding: 0, margin: "0 0 1.5rem" }}>
+                  {track.points.map((point) => (
+                    <li
+                      key={point}
+                      style={{
+                        fontFamily: "EB Garamond, serif",
+                        fontSize: "1rem",
+                        color: "rgba(247,242,234,0.8)",
+                        lineHeight: 1.8,
+                        marginBottom: "0.4rem",
+                        paddingLeft: "1.2rem",
+                        position: "relative",
+                      }}
                     >
-                      {bullet}
-                    </motion.li>
+                      <span
+                        style={{
+                          position: "absolute",
+                          left: 0,
+                          color: "#C9A24D",
+                          fontWeight: 300,
+                        }}
+                      >
+                        —
+                      </span>
+                      {point}
+                    </li>
                   ))}
                 </ul>
-              </motion.div>
 
-              {/* Testimonial section */}
-              {index === 0 && (
-                <div className="md:col-span-3">
-                  <motion.div
-                    className="my-16 max-w-4xl mx-auto"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    onMouseEnter={
-                      canHover ? () => setIsExpanded(true) : undefined
-                    }
-                    onMouseLeave={
-                      canHover ? () => setIsExpanded(false) : undefined
-                    }
+                {/* Add-on callout */}
+                <div
+                  style={{
+                    borderTop: "1px solid rgba(201,162,77,0.2)",
+                    paddingTop: "1rem",
+                  }}
+                >
+                  <span
+                    style={{
+                      fontFamily: "EB Garamond, serif",
+                      fontStyle: "italic",
+                      fontSize: "0.95rem",
+                      color: "#E5C77A",
+                    }}
                   >
-                    {/* Clickable header */}
-                    <div
-                      className="text-center mb-6 cursor-pointer select-none"
-                      onClick={
-                        !canHover
-                          ? () => setIsExpanded(prev => !prev)
-                          : undefined
-                      }
-                    >
-                      <h3 className="text-2xl md:text-3xl text-emerald font-semibold mb-2">
-                        Curious to know a NAQI student's experience?
-                      </h3>
-                      <p className="text-gold text-sm font-medium">
-                        {canHover
-                          ? isExpanded
-                            ? "Reading testimonial..."
-                            : "Hover to read"
-                          : isExpanded
-                          ? "Tap to collapse"
-                          : "Tap to read"}
-                      </p>
-                    </div>
-
-                    {/* Expandable content */}
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{
-                        height: isExpanded ? "auto" : 0,
-                        opacity: isExpanded ? 1 : 0,
-                      }}
-                      transition={{ duration: 0.45, ease: "easeOut" }}
-                      className="overflow-hidden pointer-events-none"
-                    >
-                      <div className="relative bg-gradient-to-br from-emerald/5 to-gold/5 border-l-4 border-gold rounded-xl p-8 shadow-md">
-                        <div className="absolute -top-4 -left-4 bg-gold rounded-full p-3 shadow-lg">
-                          <Quote className="w-6 h-6 text-white" />
-                        </div>
-
-                        <p className="text-emerald/90 text-lg italic leading-relaxed mb-6 pt-2">
-                          “{studentTestimonial.testimonial}”
-                        </p>
-
-                        <div className="flex items-center gap-4">
-                          {studentTestimonial.image && (
-                            <img
-                              src={studentTestimonial.image}
-                              alt={studentTestimonial.name}
-                              className="w-14 h-14 rounded-full object-cover border-2 border-gold/30"
-                            />
-                          )}
-                          <div>
-                            <p className="text-emerald font-semibold text-lg">
-                              {studentTestimonial.name}
-                            </p>
-                            <p className="text-gold text-sm font-medium">
-                              {studentTestimonial.track}
-                            </p>
-                            <p className="text-emerald/60 text-xs">
-                              NAQI Student
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  </motion.div>
+                    {track.addon}
+                  </span>
                 </div>
-              )}
-            </div>
-          );
-        })}
-      </motion.div>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* Curriculum tracks image */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          style={{ marginTop: "3rem" }}
+        >
+          <img
+            src="/images/tracks.png"
+            alt="Curriculum Track Overview"
+            style={{
+              width: "100%",
+              display: "block",
+              opacity: 0.9,
+              border: "1px solid rgba(201,162,77,0.2)",
+            }}
+          />
+        </motion.div>
+
+        {/* Editorial pull-quote — student testimonial */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          style={{
+            marginTop: "5rem",
+            borderLeft: "3px solid #C9A24D",
+            paddingLeft: "2.5rem",
+            maxWidth: "44rem",
+          }}
+        >
+          <Quote
+            style={{
+              width: 26,
+              height: 26,
+              color: "#C9A24D",
+              marginBottom: "1rem",
+              opacity: 0.7,
+            }}
+          />
+          <p
+            style={{
+              fontFamily: "Playfair Display, serif",
+              fontStyle: "italic",
+              fontSize: "1.2rem",
+              color: "#F7F2EA",
+              lineHeight: 1.8,
+              margin: "0 0 1.5rem",
+            }}
+          >
+            "The combination of Reading and Tajweed tracks transformed my
+            Qur'an recitation. I went from struggling with basic pronunciation
+            to confidently applying Tajweed rules in my daily reading."
+          </p>
+          <div>
+            <p
+              style={{
+                fontFamily: "Montserrat, sans-serif",
+                fontSize: "0.65rem",
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                color: "#C9A24D",
+                margin: "0 0 0.2rem",
+              }}
+            >
+              Hussein S.
+            </p>
+            <p
+              style={{
+                fontFamily: "EB Garamond, serif",
+                fontStyle: "italic",
+                fontSize: "0.95rem",
+                color: "rgba(247,242,234,0.55)",
+                margin: 0,
+              }}
+            >
+              Reading & Tajweed Tracks — NAQI Student
+            </p>
+          </div>
+        </motion.div>
+      </div>
     </section>
   );
 }

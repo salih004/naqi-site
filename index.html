@@ -4,51 +4,70 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Noor Al-Qur'an Institute | Online Qur'an Classes for College Students and Adults</title>
+  <title>Noor Al-Qur'an Institute | Online Qur'an Classes for Adults & College Students</title>
 
-  <!-- Meta Description for SEO -->
-  <meta name="description" content="Noor Al-Qur'an Institute: Teaching the Qur'an with mastery. Join our structured online Qur'an classes and learn recitation, Tajweed, and memorization." />
+  <!-- SEO & Social Meta -->
+  <meta name="description" content="Join Noor Al-Qur'an Institute's structured online Qur'an classes. Learn recitation, Tajwīd, and memorization for adults and college students." />
+  <link rel="canonical" href="https://nooralquran.institute/" />
 
   <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="64x64" href="/images/t-1.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/images/t-1.png" />
   <link rel="apple-touch-icon" href="/images/t-1.png" />
-  <link rel="canonical" href="https://nooralquran.institute/" />
 
- <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "EducationalOrganization",
-  "name": "Noor Al-Qur'an Institute",
-  "url": "https://nooralquran.institute/",
-  "logo": "https://nooralquran.institute/images/t-1.png",
-  "description": "Noor Al-Qur'an Institute offers structured online Qur'an classes for adults and college students, focusing on Tajwīd, memorization, and proper recitation.",
-  "educationalCredentialAwarded": "Qur'an Proficiency",
-  "teaches": [
-    "Qur'an Recitation",
-    "Tajwīd",
-    "Qur'an Memorization"
-  ],
-  "audience": {
-    "@type": "EducationalAudience",
-    "educationalRole": "Adult learner + college students"
-  }
-}
-</script>
+  <!-- Open Graph for social sharing -->
+  <meta property="og:title" content="Noor Al-Qur'an Institute | Online Qur'an Classes" />
+  <meta property="og:description" content="Structured online Qur'an classes focusing on recitation, Tajwīd, and memorization for adults and college students." />
+  <meta property="og:image" content="https://nooralquran.institute/images/t-1.png" />
+  <meta property="og:url" content="https://nooralquran.institute/" />
+  <meta property="og:type" content="website" />
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "Noor Al-Qur'an Institute",
+      "url": "https://nooralquran.institute/",
+      "logo": "https://nooralquran.institute/images/t-1.png",
+      "description": "Noor Al-Qur'an Institute offers structured online Qur'an classes for adults and college students, focusing on Tajwīd, memorization, and proper recitation.",
+      "educationalCredentialAwarded": "Qur'an Proficiency",
+      "teaches": ["Qur'an Recitation", "Tajwīd", "Qur'an Memorization"],
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "Adult learner, College student"
+      }
+    }
+  </script>
+
+  <!-- Critical CSS can be inlined here for faster first paint -->
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: #fffaf0; /* bg-cream */
+      color: #333333; /* text-charcoal */
+      line-height: 1.6;
+    }
+    #root {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+  </style>
 </head>
 
-<body class="bg-cream text-charcoal">
+<body>
   <div id="root"></div>
   <noscript>
-  <h1>Noor Al-Qur'an Institute</h1>
-  <p>
-    Noor Al-Qur'an Institute offers structured online Qur'an classes for adults and college students,
-    focusing on proper recitation, Tajwīd, memorization, and deep understanding of the Qur'an.
-  </p>
-</noscript>
+    <h1>Noor Al-Qur'an Institute</h1>
+    <p>
+      Structured online Qur'an classes for adults and college students, focusing on proper recitation, Tajwīd, memorization, and deep understanding.
+    </p>
+  </noscript>
 
-  <!-- Main script -->
-  <script type="module" src="/src/main.jsx"></script>
+  <!-- Main JS (deferred for faster load) -->
+  <script type="module" src="/src/main.jsx" defer></script>
 </body>
 
 </html>

@@ -1,245 +1,232 @@
 import { motion } from "framer-motion";
 import { FileText, Eye, Mail, Calendar, CheckCircle, Award } from "lucide-react";
 
-const enrollmentSteps = [
+const steps = [
   {
-    step: 1,
+    number: "01",
     title: "Register Online",
-    description: "Students submit their registration through NAQI's website via Google Forms.",
-    bgColor: "#C9A24D",
-    iconColor: "#2B2B2B",
+    description:
+      "Submit your registration through NAQI's website via Google Forms.",
     icon: FileText,
   },
   {
-    step: 2,
+    number: "02",
     title: "Review & Approval",
     description:
-      "The admin team reviews each submission carefully. Once approved, students are invited to proceed.",
-    bgColor: "#2F4F3E",
-    iconColor: "#F7F2EA",
+      "The admin team reviews each submission carefully. Approved students are invited to proceed.",
     icon: Eye,
   },
   {
-    step: 3,
+    number: "03",
     title: "Receive Confirmation",
-    description: "Approved students receive a confirmation email with next steps.",
-    bgColor: "#E5C77A",
-    iconColor: "#2F4F3E",
+    description:
+      "Approved students receive a confirmation email outlining all next steps.",
     icon: Mail,
   },
   {
-    step: 4,
+    number: "04",
     title: "Schedule Orientation",
-    description: "Students are scheduled for a personalized orientation session.",
-    bgColor: "#6F7F63",
-    iconColor: "#F7F2EA",
+    description:
+      "Students are scheduled for a personalized one-on-one orientation session.",
     icon: Calendar,
   },
   {
-    step: 5,
+    number: "05",
     title: "Complete Enrollment",
     description:
-      "During orientation, students review the program details and sign the official enrollment form.",
-    bgColor: "#C9A24D",
-    iconColor: "#2B2B2B",
+      "During orientation, students review program details and sign the official enrollment form.",
     icon: CheckCircle,
   },
   {
-    step: 6,
-    title: "Begin Learning Journey",
+    number: "06",
+    title: "Begin Your Journey",
     description:
-      "After final acceptance, students start their Qur'an learning journey with NAQI.",
-    bgColor: "#2F4F3E",
-    iconColor: "#F7F2EA",
+      "After final acceptance, students begin their Qur'an learning journey with NAQI.",
     icon: Award,
   },
 ];
-
-const timelineVariants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
-  },
-};
 
 export default function Enrollment() {
   return (
     <section
       id="enrollment"
-      className="py-16 md:py-24 px-4 md:px-6 scroll-mt-24"
-      style={{ backgroundColor: "#6F7F63" }}
+      className="scroll-mt-24"
+      style={{ backgroundColor: "#F7F2EA", padding: "6rem 1.5rem" }}
     >
-      <motion.h2
-        className="text-2xl sm:text-3xl md:text-4xl text-cream font-bold mb-12 md:mb-16 text-center px-4"
-        initial={{ opacity: 0, y: -16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        Enrollment Process
-      </motion.h2>
+      <div style={{ maxWidth: "72rem", margin: "0 auto" }}>
 
-      {/* Desktop Timeline */}
-      <div className="hidden md:block relative max-w-4xl mx-auto">
-        <div
-          className="absolute left-1/2 -translate-x-1/2 h-full w-px"
-          style={{ backgroundColor: "#C9A24D" }}
-        />
+        {/* Section label */}
+        <motion.div
+          className="flex items-center gap-4 mb-8"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: false }}
+          transition={{ duration: 0.6 }}
+        >
+          <span
+            style={{
+              fontFamily: "Montserrat, sans-serif",
+              fontSize: "0.6rem",
+              letterSpacing: "0.25em",
+              textTransform: "uppercase",
+              color: "#C9A24D",
+              fontWeight: 600,
+              whiteSpace: "nowrap",
+            }}
+          >
+            03 / Enrollment
+          </span>
+          <div style={{ flex: 1, height: 1, backgroundColor: "rgba(201,162,77,0.3)" }} />
+        </motion.div>
 
-        <div className="flex flex-col space-y-16">
-          {enrollmentSteps.map((item, index) => {
-            const Icon = item.icon;
-            const isLeft = index % 2 === 0;
-
-            return (
-              <motion.div
-                key={item.step}
-                variants={timelineVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="relative flex items-center"
-              >
-                <div className="w-1/2">
-                  {isLeft && (
-                    <div className="pr-16">
-                      <div
-                        className="p-6 rounded-xl shadow-md text-left border"
-                        style={{
-                          borderColor: "#C9A24D",
-                          backgroundColor: "#F7F2EA",
-                        }}
-                      >
-                        <h4 className="text-sm font-semibold mb-2" style={{ color: "#2F4F3E" }}>
-                          {item.title}
-                        </h4>
-                        <p className="text-sm leading-relaxed" style={{ color: "#2B2B2B" }}>
-                          {item.description}
-                        </p>
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                <motion.div
-                  className="absolute left-1/2 -translate-x-1/2 z-20 p-4 rounded-full shadow-lg"
-                  style={{
-                    backgroundColor: item.bgColor,
-                    color: item.iconColor,
-                    border: "2px solid #C9A24D",
-                  }}
-                  animate={{ y: [0, -6, 0] }}
-                  transition={{
-                    repeat: Infinity,
-                    duration: 1.2,
-                    ease: "easeInOut",
-                  }}
-                >
-                  <Icon className="w-6 h-6" />
-                </motion.div>
-
-                <div className="w-1/2">
-                  {!isLeft && (
-                    <div className="pl-16">
-                      <div
-                        className="p-6 rounded-xl shadow-md text-left border"
-                        style={{
-                          borderColor: "#C9A24D",
-                          backgroundColor: "#F7F2EA",
-                        }}
-                      >
-                        <h4 className="text-sm font-semibold mb-2" style={{ color: "#2F4F3E" }}>
-                          {item.title}
-                        </h4>
-                        <p className="text-sm leading-relaxed" style={{ color: "#2B2B2B" }}>
-                          {item.description}
-                        </p>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </motion.div>
-            );
-          })}
+        {/* Heading + description */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 items-end">
+          <motion.h2
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.7 }}
+            style={{
+              fontFamily: "Playfair Display, serif",
+              fontSize: "clamp(2rem, 3.5vw, 2.8rem)",
+              fontWeight: 700,
+              color: "#2F4F3E",
+              lineHeight: 1.2,
+              margin: 0,
+            }}
+          >
+            Enrollment Process
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            style={{
+              fontFamily: "EB Garamond, serif",
+              fontSize: "1.1rem",
+              lineHeight: 1.9,
+              color: "#2B2B2B",
+              margin: 0,
+            }}
+          >
+            Our enrollment process is designed to be clear, transparent, and
+            supportive — ensuring every student begins their learning journey
+            with confidence and clarity.
+          </motion.p>
         </div>
-      </div>
 
-      {/* Mobile Timeline */}
-      <div className="md:hidden relative max-w-lg mx-auto">
+        {/* Steps grid */}
         <div
-          className="absolute left-8 top-0 bottom-0 w-0.5"
-          style={{ backgroundColor: "#C9A24D" }}
-        />
-
-        <div className="flex flex-col space-y-8">
-          {enrollmentSteps.map((item, index) => {
-            const Icon = item.icon;
-
+          className="grid grid-cols-1 md:grid-cols-2"
+          style={{ border: "1px solid rgba(201,162,77,0.2)" }}
+        >
+          {steps.map((step, i) => {
+            const Icon = step.icon;
+            const isBottom = i >= steps.length - 2;
             return (
               <motion.div
-                key={item.step}
-                variants={timelineVariants}
-                initial="hidden"
-                whileInView="visible"
+                key={step.number}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="relative flex items-start gap-6"
+                transition={{ duration: 0.6, delay: (i % 2) * 0.1 }}
+                style={{
+                  backgroundColor: "#F7F2EA",
+                  padding: "2.5rem",
+                  display: "flex",
+                  gap: "1.5rem",
+                  alignItems: "flex-start",
+                  borderRight:
+                    i % 2 === 0 ? "1px solid rgba(201,162,77,0.2)" : "none",
+                  borderBottom: !isBottom
+                    ? "1px solid rgba(201,162,77,0.2)"
+                    : "none",
+                }}
               >
-                {/* Icon */}
-                <motion.div
-                  className="flex-shrink-0 p-3 rounded-full shadow-lg z-10"
-                  style={{
-                    backgroundColor: item.bgColor,
-                    color: item.iconColor,
-                    border: "2px solid #C9A24D",
-                  }}
-                  animate={{ y: [0, -4, 0] }}
-                  transition={{
-                    repeat: Infinity,
-                    duration: 1.2,
-                    ease: "easeInOut",
-                    delay: index * 0.2,
-                  }}
-                >
-                  <Icon className="w-5 h-5" />
-                </motion.div>
+                {/* Large faint number */}
+                <div style={{ flexShrink: 0, paddingTop: "0.2rem" }}>
+                  <div
+                    style={{
+                      fontFamily: "Playfair Display, serif",
+                      fontSize: "2.8rem",
+                      fontWeight: 700,
+                      color: "rgba(201,162,77,0.2)",
+                      lineHeight: 1,
+                      letterSpacing: "-0.02em",
+                    }}
+                  >
+                    {step.number}
+                  </div>
+                </div>
 
-                {/* Content Card */}
-                <div
-                  className="flex-1 p-5 rounded-xl shadow-md border"
-                  style={{
-                    borderColor: "#C9A24D",
-                    backgroundColor: "#F7F2EA",
-                  }}
-                >
-                  <h4
-                    className="text-base font-semibold mb-3"
-                    style={{ color: "#2F4F3E" }}
+                <div>
+                  {/* Icon + title */}
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.6rem",
+                      marginBottom: "0.65rem",
+                    }}
                   >
-                    {item.title}
-                  </h4>
+                    <Icon
+                      style={{ width: 15, height: 15, color: "#C9A24D", flexShrink: 0 }}
+                    />
+                    <h3
+                      style={{
+                        fontFamily: "Playfair Display, serif",
+                        fontSize: "1.1rem",
+                        fontWeight: 600,
+                        color: "#2F4F3E",
+                        margin: 0,
+                      }}
+                    >
+                      {step.title}
+                    </h3>
+                  </div>
+
                   <p
-                    className="text-sm leading-relaxed"
-                    style={{ color: "#2B2B2B" }}
+                    style={{
+                      fontFamily: "EB Garamond, serif",
+                      fontSize: "1rem",
+                      color: "#2B2B2B",
+                      lineHeight: 1.8,
+                      margin: 0,
+                    }}
                   >
-                    {item.description}
+                    {step.description}
                   </p>
                 </div>
               </motion.div>
             );
           })}
         </div>
-      </div>
 
-      <motion.p
-        className="mt-16 md:mt-20 text-center text-sm md:text-base text-cream max-w-2xl mx-auto px-4 leading-relaxed"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.8, duration: 0.8 }}
-      >
-        NAQI's enrollment process is designed to be clear, transparent, and supportive, ensuring every student enters their learning journey confidently.
-      </motion.p>
+        {/* Contact note */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.4 }}
+          style={{
+            fontFamily: "EB Garamond, serif",
+            fontStyle: "italic",
+            fontSize: "1rem",
+            color: "#6F7F63",
+            textAlign: "center",
+            marginTop: "3rem",
+          }}
+        >
+          Questions about enrollment? Reach us at{" "}
+          <a
+            href="mailto:noor.alquran.institute.usa@gmail.com"
+            style={{ color: "#C9A24D", textDecoration: "none" }}
+          >
+            noor.alquran.institute.usa@gmail.com
+          </a>
+        </motion.p>
+      </div>
     </section>
   );
 }

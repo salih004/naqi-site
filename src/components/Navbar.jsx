@@ -2,121 +2,96 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
+const menuItems = ["About", "Curriculum", "Enrollment"];
+
+const scrollTo = (id) => {
+  const el = document.querySelector(id);
+  if (el) setTimeout(() => el.scrollIntoView({ behavior: "smooth" }), 120);
+};
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const menuItems = ["Curriculum", "Enrollment", "About"];
-
-  // Smooth scroll helper with micro delay for animations
-  const scrollToSection = (id) => {
-    const section = document.querySelector(id);
-    if (!section) return;
-
-    // allow tap animation to complete
-    setTimeout(() => {
-      section.scrollIntoView({ behavior: "smooth" });
-    }, 120);
-
-    setIsOpen(false);
-  };
-
   return (
     <motion.nav
-      className="sticky top-0 bg-emerald text-cream px-4 md:px-8 py-4 z-50 bg-cover bg-center"
-      style={{ backgroundImage: "url('/images/navbar.png')" }}
+      className="sticky top-0 z-50"
+      style={{ backgroundColor: "#2F4F3E" }}
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
     >
-      <div className="flex justify-between items-center">
-        {/* Logo */}
-        <motion.a
-          href="#hero"
-          className="flex items-center flex-shrink-0"
-          onClick={(e) => {
-            e.preventDefault();
-            scrollToSection("#hero");
-          }}
-        >
-          <motion.img
-            src="/images/t-1.png"
-            alt="Noor Al-Qur'an Institute"
-            className="h-14 md:h-16 w-auto -mt-1 md:-mt-2 object-contain"
-            whileHover={{
-              scale: 1.08,
-              y: -2,
-              filter:
-                "drop-shadow(0px 0px 12px rgba(201,162,77,0.65)) brightness(1.05)",
-            }}
-            whileTap={{
-              scale: 0.94,
-              y: 0,
-              filter:
-                "drop-shadow(0px 0px 6px rgba(201,162,77,0.4)) brightness(0.98)",
-            }}
-            transition={{
-              type: "spring",
-              stiffness: 280,
-              damping: 20,
-            }}
-          />
-        </motion.a>
+      {/* Gold accent rule at top */}
+      <div style={{ height: 2, backgroundColor: "#C9A24D" }} />
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-8 text-sm font-medium">
-          {menuItems.map((item) => (
-            <motion.a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className="relative"
-              whileHover="hover"
-              initial="rest"
-              animate="rest"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection(`#${item.toLowerCase()}`);
+      <div style={{ maxWidth: "72rem", margin: "0 auto", padding: "0 1.5rem" }}>
+        <div className="flex justify-between items-center" style={{ height: 66 }}>
+
+          {/* Logo */}
+          <a
+            href="#hero"
+            onClick={(e) => { e.preventDefault(); scrollTo("#hero"); setIsOpen(false); }}
+            style={{ display: "flex", alignItems: "center", textDecoration: "none" }}
+          >
+            <img
+              src="/images/t-1.png"
+              alt="Noor Al-Qur'an Institute"
+              style={{ height: 46, width: "auto", objectFit: "contain" }}
+            />
+          </a>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center" style={{ gap: "2.5rem" }}>
+            {menuItems.map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                onClick={(e) => { e.preventDefault(); scrollTo(`#${item.toLowerCase()}`); }}
+                style={{
+                  fontFamily: "Montserrat, sans-serif",
+                  fontSize: "0.63rem",
+                  letterSpacing: "0.22em",
+                  textTransform: "uppercase",
+                  color: "rgba(247,242,234,0.75)",
+                  textDecoration: "none",
+                  transition: "color 0.2s",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#C9A24D")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(247,242,234,0.75)")}
+              >
+                {item}
+              </a>
+            ))}
+
+            <a
+              href="#apply"
+              onClick={(e) => { e.preventDefault(); scrollTo("#apply"); }}
+              style={{
+                backgroundColor: "#C9A24D",
+                color: "#2F4F3E",
+                fontFamily: "Montserrat, sans-serif",
+                fontWeight: 700,
+                fontSize: "0.63rem",
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+                padding: "0.6rem 1.5rem",
+                textDecoration: "none",
+                display: "inline-block",
               }}
             >
-              <span>{item}</span>
-              <motion.span
-                variants={{
-                  rest: { scaleX: 0 },
-                  hover: { scaleX: 1 },
-                }}
-                transition={{ duration: 0.25, ease: "easeOut" }}
-                className="absolute left-0 -bottom-1 h-[1.5px] w-full bg-gold origin-left"
-              />
-            </motion.a>
-          ))}
+              Apply
+            </a>
+          </div>
 
-          {/* Apply CTA */}
-          <motion.a
-            href="#apply"
-            className="px-4 py-2 rounded-md border border-gold text-2F4F3E bg-gold font-semibold"
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection("#apply");
-            }}
-            whileHover={{
-              scale: 1.05,
-              y: -2,
-              boxShadow: "0px 8px 15px rgba(201,162,77,0.4)",
-            }}
-            whileTap={{ scale: 0.96 }}
-            transition={{ type: "spring", stiffness: 260, damping: 18 }}
+          {/* Mobile button */}
+          <button
+            className="md:hidden"
+            onClick={() => setIsOpen(!isOpen)}
+            style={{ background: "none", border: "none", cursor: "pointer", color: "#F7F2EA", padding: 4 }}
+            aria-label="Toggle menu"
           >
-            Apply
-          </motion.a>
+            {isOpen ? <X style={{ width: 22, height: 22 }} /> : <Menu style={{ width: 22, height: 22 }} />}
+          </button>
         </div>
-
-        {/* Mobile Menu Button */}
-        <motion.button
-          className="md:hidden text-cream"
-          onClick={() => setIsOpen(!isOpen)}
-          whileTap={{ scale: 0.9 }}
-        >
-          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </motion.button>
       </div>
 
       {/* Mobile Menu */}
@@ -126,36 +101,46 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="md:hidden overflow-hidden"
+            transition={{ duration: 0.25 }}
+            style={{ overflow: "hidden", borderTop: "1px solid rgba(201,162,77,0.2)" }}
           >
-            <div className="flex flex-col space-y-4 pt-4 pb-2">
+            <div style={{ padding: "1.5rem", display: "flex", flexDirection: "column", gap: "1.1rem" }}>
               {menuItems.map((item) => (
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
-                  className="text-sm font-medium hover:text-gold transition-colors"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollToSection(`#${item.toLowerCase()}`);
+                  onClick={(e) => { e.preventDefault(); scrollTo(`#${item.toLowerCase()}`); setIsOpen(false); }}
+                  style={{
+                    fontFamily: "Montserrat, sans-serif",
+                    fontSize: "0.63rem",
+                    letterSpacing: "0.22em",
+                    textTransform: "uppercase",
+                    color: "rgba(247,242,234,0.8)",
+                    textDecoration: "none",
                   }}
                 >
                   {item}
                 </a>
               ))}
-
-              <motion.a
+              <a
                 href="#apply"
-                className="text-sm font-medium px-4 py-2 rounded-md border border-gold text-2F4F3E bg-gold text-center"
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection("#apply");
+                onClick={(e) => { e.preventDefault(); scrollTo("#apply"); setIsOpen(false); }}
+                style={{
+                  backgroundColor: "#C9A24D",
+                  color: "#2F4F3E",
+                  fontFamily: "Montserrat, sans-serif",
+                  fontWeight: 700,
+                  fontSize: "0.63rem",
+                  letterSpacing: "0.16em",
+                  textTransform: "uppercase",
+                  padding: "0.75rem 1.5rem",
+                  textDecoration: "none",
+                  display: "inline-block",
+                  textAlign: "center",
                 }}
-                whileTap={{ scale: 0.96 }}
-                transition={{ type: "spring", stiffness: 260, damping: 18 }}
               >
-                Apply
-              </motion.a>
+                Apply Now
+              </a>
             </div>
           </motion.div>
         )}
