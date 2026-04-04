@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { BookOpen, Layers, Sparkles, Quote } from "lucide-react";
+import { BookOpen, Layers, Sparkles, Quote, ScrollText } from "lucide-react";
 
 const tracks = [
   {
@@ -41,6 +41,13 @@ const tracks = [
     ],
     addon: "Pair with: Reading or Memorization Track",
   },
+];
+
+const tafsirPoints = [
+  "Explore the meaning, context, and wisdom behind Qur'anic verses",
+  "Study classical and contemporary exegesis from renowned scholars",
+  "Understand reasons of revelation (Asbāb al-Nuzūl) and linguistic depth",
+  "Connect Qur'anic teachings to modern life with practical application",
 ];
 
 export default function Curriculum() {
@@ -112,7 +119,7 @@ export default function Curriculum() {
           </motion.p>
         </div>
 
-        {/* Track panels */}
+        {/* Track panels — three active tracks */}
         <div
           className="grid grid-cols-1 md:grid-cols-3"
           style={{ border: "1px solid rgba(201,162,77,0.2)" }}
@@ -253,6 +260,227 @@ export default function Curriculum() {
             );
           })}
         </div>
+
+        {/* ── Tafsir Track — Coming Soon ──
+            Sits flush below the three panels, sharing the same outer border.
+            Muted palette + dashed gold accent signals "forthcoming" clearly
+            while staying fully on-brand with the editorial design language.     */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false }}
+          transition={{ duration: 0.7, delay: 0.22 }}
+          style={{
+            position: "relative",
+            overflow: "hidden",
+            borderLeft: "1px solid rgba(201,162,77,0.2)",
+            borderRight: "1px solid rgba(201,162,77,0.2)",
+            borderBottom: "1px solid rgba(201,162,77,0.2)",
+            backgroundColor: "rgba(10, 27, 19, 0.65)",
+          }}
+        >
+          {/* Arabic watermark — right-anchored, very subtle */}
+          <div
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              right: "2.5rem",
+              top: "50%",
+              transform: "translateY(-50%)",
+              fontFamily: "Georgia, serif",
+              fontSize: "clamp(4rem, 11vw, 8rem)",
+              fontWeight: 700,
+              color: "rgba(201,162,77,0.055)",
+              lineHeight: 1,
+              userSelect: "none",
+              pointerEvents: "none",
+            }}
+          >
+            تفسير
+          </div>
+
+          <div
+            style={{
+              position: "relative",
+              zIndex: 1,
+              padding: "2.5rem",
+              display: "grid",
+              gridTemplateColumns: "auto 1fr",
+              gap: "2.5rem",
+              alignItems: "start",
+            }}
+            className="flex-col md:grid"
+          >
+            {/* Left column — numeral, icon, badge */}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+                gap: "1.1rem",
+                minWidth: "4.5rem",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "flex-start",
+                  justifyContent: "space-between",
+                  width: "100%",
+                  gap: "0.75rem",
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: "Playfair Display, serif",
+                    fontSize: "3.5rem",
+                    fontWeight: 700,
+                    color: "rgba(201,162,77,0.1)",
+                    lineHeight: 1,
+                    userSelect: "none",
+                  }}
+                >
+                  IV
+                </span>
+                <ScrollText
+                  style={{
+                    width: 20,
+                    height: 20,
+                    color: "rgba(201,162,77,0.4)",
+                    marginTop: "0.6rem",
+                    flexShrink: 0,
+                  }}
+                />
+              </div>
+
+              {/* Pulsing "Coming Soon" badge */}
+              <div
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.45rem",
+                  border: "1px solid rgba(201,162,77,0.3)",
+                  borderRadius: "2px",
+                  padding: "0.28rem 0.65rem",
+                  backgroundColor: "rgba(201,162,77,0.06)",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                <motion.span
+                  animate={{ opacity: [1, 0.15, 1] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                  style={{
+                    display: "inline-block",
+                    width: 5,
+                    height: 5,
+                    borderRadius: "50%",
+                    backgroundColor: "rgba(201,162,77,0.7)",
+                    flexShrink: 0,
+                  }}
+                />
+                <span
+                  style={{
+                    fontFamily: "Montserrat, sans-serif",
+                    fontSize: "0.52rem",
+                    letterSpacing: "0.22em",
+                    textTransform: "uppercase",
+                    color: "rgba(201,162,77,0.7)",
+                    fontWeight: 600,
+                  }}
+                >
+                  Coming Soon
+                </span>
+              </div>
+            </div>
+
+            {/* Right column — track content */}
+            <div>
+              {/* Dashed accent line (mirrors the solid line on active tracks) */}
+              <div
+                style={{
+                  width: "2rem",
+                  height: 2,
+                  backgroundImage:
+                    "repeating-linear-gradient(90deg, rgba(201,162,77,0.45) 0, rgba(201,162,77,0.45) 4px, transparent 4px, transparent 8px)",
+                  marginBottom: "1rem",
+                }}
+              />
+
+              <h3
+                style={{
+                  fontFamily: "Playfair Display, serif",
+                  fontSize: "1.25rem",
+                  fontWeight: 700,
+                  color: "rgba(247,242,234,0.45)",
+                  margin: "0 0 0.3rem",
+                }}
+              >
+                Tafsir Track
+              </h3>
+
+              <p
+                style={{
+                  fontFamily: "Montserrat, sans-serif",
+                  fontSize: "0.6rem",
+                  letterSpacing: "0.15em",
+                  textTransform: "uppercase",
+                  color: "rgba(201,162,77,0.45)",
+                  margin: "0 0 1.5rem",
+                }}
+              >
+                Qur'anic Exegesis & Deeper Understanding
+              </p>
+
+              <ul style={{ listStyle: "none", padding: 0, margin: "0 0 1.5rem" }}>
+                {tafsirPoints.map((point) => (
+                  <li
+                    key={point}
+                    style={{
+                      fontFamily: "EB Garamond, serif",
+                      fontSize: "1rem",
+                      color: "rgba(247,242,234,0.35)",
+                      lineHeight: 1.8,
+                      marginBottom: "0.4rem",
+                      paddingLeft: "1.2rem",
+                      position: "relative",
+                    }}
+                  >
+                    <span
+                      style={{
+                        position: "absolute",
+                        left: 0,
+                        color: "rgba(201,162,77,0.3)",
+                        fontWeight: 300,
+                      }}
+                    >
+                      —
+                    </span>
+                    {point}
+                  </li>
+                ))}
+              </ul>
+
+              {/* Footer callout — mirrors add-on row */}
+              <div
+                style={{
+                  borderTop: "1px solid rgba(201,162,77,0.1)",
+                  paddingTop: "1rem",
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: "EB Garamond, serif",
+                    fontStyle: "italic",
+                    fontSize: "0.95rem",
+                    color: "rgba(229,199,122,0.38)",
+                  }}
+                >
+                  Launching after core tracks are established
+                </span>
+              </div>
+            </div>
+          </div>
+        </motion.div>
 
         {/* Curriculum tracks image */}
         <motion.div
